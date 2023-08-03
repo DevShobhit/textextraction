@@ -1,20 +1,22 @@
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import { PageContext } from '../contexts/pageContext'
 import { DataContext } from '../contexts/dataContext'
 import { ValidateEmail } from '../utils/validationutils'
 
-import { Heading, Input, Button, Flex, Container } from '@chakra-ui/react'
+import { Heading, Input, Button, Flex, Container, Text } from '@chakra-ui/react'
 
 const Home = () => {
   const { setPage } = useContext(PageContext)
   const { email, setEmail } = useContext(DataContext)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setEmail(e.target.value)
+    error && setError(null)
   }
 
   const handleClick = () => {
-    ValidateEmail(email) ? setPage(2) : ''
+    ValidateEmail(email) ? setPage(2) : setError('Invalid Email')
   }
 
   return (
@@ -55,6 +57,9 @@ const Home = () => {
           Get Started →
         </Button>
       </Flex>
+      <Text mt='10px' fontSize='12px' px='10px'>
+        {error}
+      </Text>
     </Container>
   )
 }
