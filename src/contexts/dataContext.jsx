@@ -1,21 +1,34 @@
 import { useState, useEffect, createContext } from 'react'
 import webSocketInit from '../services/websockets'
+import getConnectionStrings from '../services/getConnectionStrings'
 
 export const DataContext = createContext(null)
 
 const DataProvider = ({ children }) => {
   const [email, setEmail] = useState('')
   const [image, setImage] = useState(null)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('Websocket not initialised')
   const [result, setResult] = useState([])
   const [ws, setWs] = useState(null)
+  const [sasToken, setSASToken] = useState(null)
+  const [accessURL, setAccessURL] = useState(null)
 
   useEffect(() => {
-    setWs(webSocketInit(setError))
+    const getData = async () => {
+      const data = await getConnectionStrings()
+      setAccessURL(data.clientURL)
+      setSASToken(data.sasToken)
+    }
+
+    getData()
+  }, [sasToken, accessURL])
+
+  useEffect(() => {
+    accessURL && setWs(webSocketInit(accessURL, setError))
     return () => {
       ws && ws.close()
     }
-  }, [])
+  }, [accessURL])
 
   useEffect(() => {
     ws &&
@@ -39,6 +52,7 @@ const DataProvider = ({ children }) => {
         setResult,
         error,
         setError,
+        sasToken,
       }}
     >
       {children}

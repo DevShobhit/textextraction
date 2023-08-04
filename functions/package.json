@@ -10,6 +10,7 @@
     "@azure/cognitiveservices-computervision": "^8.2.0",
     "@azure/functions": "^4.0.0-alpha.7",
     "@azure/ms-rest-js": "^2.7.0",
+    "@azure/storage-blob": "^12.15.0",
     "@azure/web-pubsub": "^1.1.1",
     "mongodb": "^5.7.0"
   },

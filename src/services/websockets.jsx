@@ -1,5 +1,5 @@
-const webSocketInit = (setError) => {
-  const ws = new WebSocket(import.meta.env.VITE_PUB_SUB_CLIENT)
+const webSocketInit = (url, setError) => {
+  const ws = new WebSocket(url)
   ws.onopen = () => {
     console.log('WebSocket Connection Established Properly.')
     setError(null)

@@ -29,11 +29,11 @@ const Result = () => {
         mt={5}
         gap={2}
         padding={2}
-        h={'90vh'}
+        h={'80vh'}
       >
         <Box w={['100%', '100%', '50%']} mb={2}>
           {image && (
-            <Image src={imageURL} maxW={'100%'} maxH={'90vh'} mx={'auto'} />
+            <Image src={imageURL} maxW={'100%'} maxH={'80vh'} mx={'auto'} />
           )}
         </Box>
         <Box w={['100%', '100%', '50%']} py={1} px={2} mb={2}>

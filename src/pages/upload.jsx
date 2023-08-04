@@ -11,7 +11,7 @@ import { Box, Image, Text, Flex, Button, Progress } from '@chakra-ui/react'
 
 const Upload = () => {
   const { setPage } = useContext(PageContext)
-  const { image, email, error } = useContext(DataContext)
+  const { image, email, error, sasToken } = useContext(DataContext)
 
   const [uploadInfo, setUploadInfo] = useState({
     error: null,
@@ -22,7 +22,7 @@ const Upload = () => {
   const imageURL = image && URL.createObjectURL(image)
   const uploadUrl = `https://${
     import.meta.env.VITE_STORAGE_ACCOUNT_NAME
-  }.blob.core.windows.net/${import.meta.env.VITE_SAS_TOKEN}`
+  }.blob.core.windows.net/${import.meta.env.VITE_CONTAINER_NAME}/?${sasToken}`
 
   const handleUpload = () => {
     setUploadInfo({ ...uploadInfo, isUploading: true })
