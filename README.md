@@ -4,7 +4,7 @@ The Image Text Extractor Application is designed to extract text from images. Le
 
 ## Architecture
 
-![](src\assets\images\architecture.png)
+![](src/assets/images/architecture.png)
 
 ## Tech Stack
 
